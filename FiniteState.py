@@ -8,39 +8,34 @@ from basic.PrintableObject import PrintableObject
 
 class FiniteStateClass(PrintableObject):
     """
-    FiniteStateClass is a class that mimic the behavior of enum in C++
-    There can be only one True state at a time
-    default state is the first state
+    FiniteStateClass define the finite states of the class instance
+    self.states is a class instance whose attributes are the allowed states
+    use set_states(states.state) to change state
     """
+    class StatesClass(object):
+        pass
+    
     def __init__(self, stateList = []):
+        self.states = self.StatesClass()
+        self.__stateList = stateList
         if (len(stateList) > 0):
             for ii, state in enumerate(stateList):
-                if (ii == 0):
-                    setattr(self, state, True)
-                elif (ii > 0):
-                    setattr(self, state, False)
+                setattr(self.states, state, state)
         else:
-            raise Exception("Enum stateList length must > 0!")
+            raise Exception("stateList length must > 0!")
+        self.current_state = ""
             
     def set_state(self, state):
-        if (hasattr(self, state)):
-            for var in vars(self):
-                # set everything to false at first
-                setattr(self, var, False)
-            setattr(self, state, True)
+        if (hasattr(self.states, state)):
+            self.current_state = state
         else:
             raise Exception("no state named %s exists!" % state)
-            
-    def current_state(self):
-        for ii, state in enumerate(self.__dict__):
-            if (getattr(self, state)):
-                return state
-                
-    def print_obj(self):
-        print 'Enum state: ', self.current_state()
+        
+    def availableStates(self):
+        print self.__stateList
         
 if __name__ == "__main__":
     t = FiniteStateClass(stateList = ['test1', 'test'])
-    t.set_state('test')
-    print t.__dict__
-    t.print_obj()
+    t.set_state(t.states.test)
+    print t.current_state
+    t.availableStates()
