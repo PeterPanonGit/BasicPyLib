@@ -6,9 +6,9 @@ Created on Sun Jul 06 13:49:50 2014
 """
 from basic.PrintableObject import PrintableObject
 
-class EnumClass(PrintableObject):
+class FiniteStateClass(PrintableObject):
     """
-    EnumClass is a class that mimic the behavior of enum in C++
+    FiniteStateClass is a class that mimic the behavior of enum in C++
     There can be only one True state at a time
     default state is the first state
     """
@@ -40,7 +40,7 @@ class EnumClass(PrintableObject):
         print 'Enum state: ', self.current_state()
         
 if __name__ == "__main__":
-    t = EnumClass(stateList = ['test1', 'test'])
+    t = FiniteStateClass(stateList = ['test1', 'test'])
     t.set_state('test')
     print t.__dict__
     t.print_obj()
