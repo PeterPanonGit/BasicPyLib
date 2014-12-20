@@ -5,7 +5,7 @@ Created on Tue Jul 15 11:01:38 2014
 @author: peter
 """
 
-class PrintableObject(object):
+class PrintableClass(object):
     def __init__(self):
         pass
     
