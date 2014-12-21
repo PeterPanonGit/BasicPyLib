@@ -26,7 +26,7 @@ class FiniteStateClass(object):
         
     def is_state(self, state):
         return self._current_state == state
-    
+        
 if __name__ == "__main__":
     class TestStateClass(FiniteStateClass):
         def __init__(self):
@@ -34,4 +34,5 @@ if __name__ == "__main__":
     t = TestStateClass()
     t.set_state(t.a)
     print t.is_state(t.a)
+    t.c = "fad"
     
