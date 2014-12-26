@@ -23,20 +23,19 @@ class SimpleLoggerClass(object):
             os.makedirs('Log')
         self._log_file = open('Log/' + filename, 'w')
         
-    def info(self, msg):
+    def _write_to_log(self, msg):
         currentTime = datetime.datetime.now(tz = self.USeasternTimeZone)
         print msg
-        self._log_file.write(currentTime + ": " + msg + '\n')
+        self._log_file.write(str(currentTime) + ": " + msg + '\n')        
+        
+    def info(self, msg):
+        self._write_to_log(msg)
         
     def debug(self, msg):
-        currentTime = datetime.datetime.now(tz = self.USeasternTimeZone)
-        print msg
-        self._log_file.write(currentTime + ": " + msg + '\n')
+        self._write_to_log(msg)
 
     def error(self, msg):
-        currentTime = datetime.datetime.now(tz = self.USeasternTimeZone)
-        print msg
-        self._log_file.write(currentTime + ": " + msg + '\n')
+        self._write_to_log(msg)
         
     def close_log(self):
         self._log_file.close()
