@@ -6,6 +6,7 @@ Created on Thu Dec 25 19:01:54 2014
 """
 import os
 import datetime
+import pytz
 
 class SimpleLoggerClass(object):
     def __init__(self, filename):
